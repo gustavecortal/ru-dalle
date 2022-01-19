@@ -149,7 +149,6 @@ class DalleModel(torch.nn.Module):
                  mlp_activation='gelu_jit',
                  hf_version='v3'):
         super(DalleModel, self).__init__()
-        convert_to_int8(self)
         self.device = device
         self.image_tokens_per_dim = image_tokens_per_dim
         self.image_seq_length = image_tokens_per_dim ** 2
@@ -199,6 +198,7 @@ class DalleModel(torch.nn.Module):
             is_bool_mask=is_bool_mask,
             hf_version=self.hf_version,
         )
+        convert_to_int8(self)
 
     def get_param(self, item):
         return getattr(self, item)
