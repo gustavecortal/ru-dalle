@@ -7,6 +7,14 @@ from .utils import exists, is_empty, init_method_normal
 
 from .transformer import DalleTransformer
 
+import torch.nn as nn
+
+from bitsandbytes.functional import quantize_blockwise, dequantize_blockwise
+import transformers
+from typing import Tuple
+from torch.cuda.amp import custom_fwd, custom_bwd
+%config Completer.use_jedi = False
+
 class FrozenBNBLinear(nn.Module):
     def __init__(self, weight, absmax, code, bias=None):
         assert isinstance(bias, nn.Parameter) or bias is None
