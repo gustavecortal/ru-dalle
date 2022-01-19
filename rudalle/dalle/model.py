@@ -13,7 +13,6 @@ from bitsandbytes.functional import quantize_blockwise, dequantize_blockwise
 import transformers
 from typing import Tuple
 from torch.cuda.amp import custom_fwd, custom_bwd
-%config Completer.use_jedi = False
 
 class FrozenBNBLinear(nn.Module):
     def __init__(self, weight, absmax, code, bias=None):
